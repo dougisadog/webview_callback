@@ -4,10 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
 
+/**
+ * 调起系统震动实现类
+ * @author Doug
+ *
+ */
 public class VibratorLoader extends BaseFunctionsLoader {
 	// private final static int REQUEST_RV_LOADER = 21002;
 	private Vibrator vibrator;
 
+	/**
+	 * @param params params[0] 为‘repeat’是无限循环 params[1] 间隔时间 params[2]单词震动时间
+	 */
 	@Override
 	public void functionsStart(String... params) {
 		int repeat = -1;// -1为不重复，0为一直震动

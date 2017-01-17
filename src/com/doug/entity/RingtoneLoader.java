@@ -9,16 +9,23 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Vibrator;
 
+/**
+ * 默认响铃实现类 js具体参数待优化
+ * @author Doug
+ *
+ */
 public class RingtoneLoader extends BaseFunctionsLoader{
-//	private final static int REQUEST_RV_LOADER = 21002;
+	
 	private MediaPlayer mMediaPlayer;
-	private Vibrator vibrator;
 	
 	@Override
 	public void functionsStart(String... params) {
 		 ringtone();
 	}
 	
+	/**
+	 * 调起系统默认响铃
+	 */
 	private void ringtone() {
 		Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);   
 		// 如果为空，才构造，不为空，说明之前有构造过  
@@ -44,11 +51,6 @@ public class RingtoneLoader extends BaseFunctionsLoader{
 		}  
 	}
 	
-	private void vibrator() {
-		vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);  
-		vibrator.vibrate(new long[]{3000, 3000}, 0);  
-	}
-
 	@Override
 	public void dealWithActivityResult(int requestCode, int resultCode,
 			Intent data) {

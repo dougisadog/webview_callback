@@ -20,7 +20,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 /**
- * 统管所有loader
+ * 统管所有loader的manager
  * @author doug
  *
  */
@@ -39,11 +39,6 @@ private static WVInjectManager instance = null;
 	public WebView getWebView() {
 		return webView;
 	}
-	
-	public static interface WebClientCallback {
-		public void onFileChoose();
-	}
-
 	
 	private Handler mHandler;
 	

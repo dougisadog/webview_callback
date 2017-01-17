@@ -5,6 +5,11 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+/**
+ * WebChromeClient 的对应展开接口，待补充
+ * @author Doug
+ *
+ */
 public interface WebClientInterface {
 
     public void openFileChooser(ValueCallback<Uri> filePathCallback);

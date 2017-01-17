@@ -7,9 +7,18 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+/**
+ * 联系人功能实现类
+ * @author Doug
+ *
+ */
 public class ContactLoader extends BaseFunctionsLoader{
+	
 	private final static int REQUEST_CONTACT_LOADER = 21001;
 	
+	/**
+	 * 开启联系人列表实现
+	 */
 	public void dealWithActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if (!inited) return;
@@ -44,6 +53,11 @@ public class ContactLoader extends BaseFunctionsLoader{
 	    }
 	}
 	
+	/**
+	 * 选定联系人后的回调 通后js端的onContactSelected(username，tel) 方法监听
+	 * @param username 联系人姓名
+	 * @param tel 联系人电话
+	 */
 	private void onContactSelectListener(String username, String tel) {
 		getWebView().loadUrl("javascript:onContactSelected('" + username + "','" + tel + "')");
 	}

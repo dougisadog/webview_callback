@@ -24,10 +24,16 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+/**
+ * 文件上传实现
+ * @author Doug
+ *
+ */
 public class FileUploader extends BaseFunctionsLoader {
 	private final static int REQUEST_FILE_PICKER = 21000;
 	private final static int REQUEST_CAMERA_PICKER = 20999;
 
+	
 	@Override
 	public void openFileChooser(ValueCallback<Uri> filePathCallback) {
 		mFilePathCallback4 = filePathCallback;
@@ -46,6 +52,11 @@ public class FileUploader extends BaseFunctionsLoader {
 		showNoticeDialog();
 	}
 
+	
+	/**
+	 * 通过重写BaseFunctionsLoader中的WebClientInterface的实现方法来进行文件选取的实现
+	 * 具体方法结构和返回值参见WebChromeClient的对应结构
+	 */
 	@Override
 	public boolean onShowFileChooser(WebView webView,
 			ValueCallback<Uri[]> filePathCallback,
@@ -70,6 +81,10 @@ public class FileUploader extends BaseFunctionsLoader {
 		return flag;
 	}
 
+	
+	/**
+	 * 打开文件  
+	 */ 
 	private void openFiles() {
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -81,6 +96,10 @@ public class FileUploader extends BaseFunctionsLoader {
 
 	private String filePhotoPath;
 
+	
+	/**
+	 * 打开摄像头拍照
+	 */ 
 	private void openCamera() {
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		filePhotoPath = Environment.getExternalStorageDirectory().getPath()
@@ -103,13 +122,11 @@ public class FileUploader extends BaseFunctionsLoader {
 	private AlertDialog chooseDialog;
 
 	/**
-	 * 显示版本更新通知对话框
+	 * 显示图片选择方式弹出框（相册/拍照）
 	 */
 	private void showNoticeDialog() {
 		AlertDialog.Builder builder = new Builder(getActivity());
 		builder.setTitle("选择方式");
-		StringBuffer sb = new StringBuffer();
-		// builder.setMessage(sb.toString());
 		builder.setPositiveButton("相册", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -144,6 +161,10 @@ public class FileUploader extends BaseFunctionsLoader {
 	private ValueCallback<Uri> mFilePathCallback4;
 	private ValueCallback<Uri[]> mFilePathCallback5;
 
+	/**
+	 * 通过uri返回文件选取结果
+	 * @param result
+	 */
 	private void uploadPic(Uri result) {
 		if (mFilePathCallback4 != null) {
 			mFilePathCallback4.onReceiveValue(result);
