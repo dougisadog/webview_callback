@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WebViewCallback_Project</string>
+    <string name="hello_world">Hello world!</string>
+    
+        <!-- system -->
+    <string name="timeout">网络存在问题，请稍后重试</string>
+    <string name="unknown_error_error_code">未知错误，错误代码</string>
+    <string name="sd_card_in_not_mounted">请加成您的SD卡是否有插入</string>
+    <string name="lessonResConfigErr">课程资源出错，正在为您修复，请稍后.</string>
+    <string name="something_error">发生故障</string>
+    <string name="please_deleted_cache_dir">权限出错，无法读取存储空间</string>
+	<string name="ok">确定</string>
+
+</resources>
