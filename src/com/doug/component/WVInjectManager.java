@@ -26,7 +26,7 @@ import android.webkit.WebView;
  */
 public class WVInjectManager {
 	
-private static WVInjectManager instance = null;
+	private static WVInjectManager instance = null;
 
 	
 	private Map<Integer, BaseFunctionsLoader> loaders; //功能loader列表

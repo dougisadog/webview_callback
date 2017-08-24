@@ -5,7 +5,6 @@ import java.util.Set;
 
 import com.doug.component.WVInjectManager;
 import com.doug.entity.BaseFunctionsLoader;
-import com.doug.entity.FileUploader;
 import com.example.webviewcallback_project.R;
 
 import android.app.Activity;
@@ -14,30 +13,30 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class MainActivity extends Activity{
+public class FunctionsActivity extends Activity{
 
-	private WebView web;
-	private FileUploader fl;
+	private WebView webView;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_main);
-		web = (WebView) findViewById(R.id.webview);
-		WebSettings ws = web.getSettings();
+		webView = (WebView) findViewById(R.id.webview);
+		WebSettings ws = webView.getSettings();
 		ws.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 		// 设置支持缩放
 		ws.setSupportZoom(true);
 		ws.setUseWideViewPort(true);
 		ws.setJavaScriptEnabled(true);
 		ws.setLoadWithOverviewMode(true);
-		web.loadUrl("http://www.chuantu.biz");
+		webView.loadUrl("http://www.nangua.webok.net:9973/jsp");
 		
 		Set<Integer> functions = new HashSet<Integer>();
+		functions.add(BaseFunctionsLoader.CONTACT);
+		functions.add(BaseFunctionsLoader.RINGTONE);
+		functions.add(BaseFunctionsLoader.VIBRATOR);
 		functions.add(BaseFunctionsLoader.FILEUPLOAD);
-		WVInjectManager.getInstance().init(web, this).initFunctions(functions);
-		
-		
+		WVInjectManager.getInstance().init(webView, this).initFunctions(functions);
 	}
 
 	@Override
@@ -50,10 +49,12 @@ public class MainActivity extends Activity{
 		super.onPause();
 	}
 	
+	
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent intent)
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		WVInjectManager.getInstance().dealWithActivityResult(requestCode, resultCode, intent);
+		super.onActivityResult(requestCode, resultCode, data);
+		WVInjectManager.getInstance().dealWithActivityResult(requestCode, resultCode, data);
 	}
 
 }
